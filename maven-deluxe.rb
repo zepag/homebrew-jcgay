@@ -11,16 +11,6 @@ class MavenDeluxe < Formula
     sha256 'c6f109712061c55608db0aa45abfe127faf7ea08ca19dd04adae5be2247afc44'
   end
   
-  resource 'maven-notifier-1.9.1' do
-    url 'http://dl.bintray.com/jcgay/maven/fr/jcgay/maven/maven-notifier/1.9.1/maven-notifier-1.9.1-shaded.jar'
-    sha256 'ed6fbb0bffc633cf43b4f52d8aae33ac1ce313f7528ca4aecaa75559f8a3bfd5'
-  end
-  
-  resource 'maven-profiler-2.4' do
-    url 'http://dl.bintray.com/jcgay/maven/fr/jcgay/maven/maven-profiler/2.4/maven-profiler-2.4-shaded.jar'
-    sha256 '2ede9a5f5646ba853dd1926142b0f69fdfabdb08926bf403746fcd4f7f433eed'
-  end
-
   depends_on :java
 
   def install
@@ -46,8 +36,6 @@ class MavenDeluxe < Formula
     rm_f Dir[libexec/"lib/slf4j-simple*"]
 
     resource("maven-color-1.6.0").stage { system "cp", "-r", ".", libexec }    
-    resource("maven-notifier-1.9.1").stage { (libexec/"lib/ext").install Dir["*"] }
-    resource("maven-profiler-2.4").stage { (libexec/"lib/ext").install Dir["*"] }    
   end
 
   conflicts_with "mvnvm", :because => "also installs a 'mvn' executable"
